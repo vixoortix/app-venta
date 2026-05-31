@@ -3,6 +3,10 @@ import { PrismaLibSql } from '@prisma/adapter-libsql'
 import { createClient } from '@libsql/client'
 import path from 'path'
 
+if (!process.env.DATABASE_URL) {
+  process.env.DATABASE_URL = "file:./dev.db";
+}
+
 const dbPath = path.resolve(process.cwd(), 'prisma', 'dev.db')
 
 const libsql = createClient({
